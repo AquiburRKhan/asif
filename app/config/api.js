@@ -10,7 +10,7 @@ let _call = async (url, _method, data) => {
             method: _method,
             headers: HEADERS,
             body: JSON.stringify(data)})
-        let responseJson = await response.json()
+        let responseJson = response.json()
         return responseJson
     } catch (error) {
         console.log(error)
