@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View,Image, TextInput, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View,Image, TextInput, AsyncStorage, Platform } from 'react-native';
 import API from './../config/api'
 import Button from 'react-native-button';
 
@@ -79,6 +79,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     input: {
+        ...Platform.select({
+            android: {
+                width: 250
+            }
+        }),
         height: 50,
         textAlign: 'center',
         padding: 10,
