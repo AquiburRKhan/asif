@@ -4,6 +4,8 @@ import {Icon} from 'react-native-elements';
 
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
+import Home from '../screens/Home';
+import LogPayment from '../screens/LogPayment';
 
 export const Tabs = StackNavigator({
     Login: {
@@ -11,5 +13,11 @@ export const Tabs = StackNavigator({
     },
     Signup: {
         screen: Signup
+    },
+    Home: {
+        screen: Home
+    },
+    LogPayment: {
+        screen: LogPayment
     }
 });

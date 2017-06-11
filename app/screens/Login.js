@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View,Image, TextInput,Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
+import Button from 'react-native-button';
+
 
 export default class Login extends Component {
     static navigationOptions = ({ navigation }) => ({
-        title: 'Asif',
-        headerTitle: 'Asif',
+        title: 'Login',
+        headerTitle: 'Login',
         headerStyle: {backgroundColor: '#0080ff'},
         headerTitleStyle: {color:'#ffffff'}
     });
@@ -45,8 +47,9 @@ export default class Login extends Component {
                     value={this.state.password}
                 />
                 <Button
-                    title="Login"
-                />
+                    style={styles.buttonStyle}
+                    onPress={() => navigate('Home')}
+                >Login</Button>
                 <Text onPress={() => navigate('Signup')} style={styles.links}>Don't have an account? Sign up</Text>
             </View>
         );
@@ -74,5 +77,13 @@ const styles = StyleSheet.create({
     links: {
         color: '#0080ff',
         marginTop: 10
+    },
+    buttonStyle: {
+        color: '#ffffff',
+        backgroundColor: '#428bca',
+        padding: 10,
+        paddingRight: 30,
+        paddingLeft: 30
+
     }
 });
