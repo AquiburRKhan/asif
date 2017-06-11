@@ -19,7 +19,11 @@ let _call = async (url, _method, data) => {
 
 const API = {
     login: (data) => {
-        return _call('auth/login/', 'POST', data)
+        return _call('auth/login/', 'POST', data);
+    },
+    register: (data) => {
+        console.log(data)
+        return _call('auth/register/', 'POST', data);
     }
 };
 

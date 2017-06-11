@@ -10,6 +10,7 @@ export default class Login extends Component {
         headerStyle: {backgroundColor: '#0080ff'},
         headerTitleStyle: {color:'#ffffff'}
     });
+
     constructor(props) {
         super(props);
         this.state = { 
@@ -64,7 +65,7 @@ export default class Login extends Component {
                     style={styles.buttonStyle}
                     onPress={() => this.login(this.state, navigate)}
                 >Login</Button>
-                <Text onPress={() => navigate('Signup')} style={styles.links}>Don't have an account? Sign up</Text>
+                <Text onPress={() => navigate('Signup')} style={styles.links}>Sign up</Text>
             </View>
         );
     }
@@ -102,6 +103,5 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingRight: 30,
         paddingLeft: 30
-
     }
 });
