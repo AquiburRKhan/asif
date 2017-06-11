@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View,Image, TextInput,Button, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View,Image, TextInput, AsyncStorage } from 'react-native';
 import API from './../config/api'
+import Button from 'react-native-button';
 
 export default class Login extends Component {
     static navigationOptions = ({ navigation }) => ({
-        title: 'Asif',
+        title: 'Login',
+        headerTitle: 'Login',
         headerStyle: {backgroundColor: '#0080ff'},
-        headerTitleStyle: {color:'#000'}
+        headerTitleStyle: {color:'#ffffff'}
     });
     constructor(props) {
         super(props);
@@ -17,7 +19,8 @@ export default class Login extends Component {
 		};
     }
 
-    login(_state) {
+    login(_state, navigate) {
+        
         // Log in
         let response = API.login(_state)
             .then((response) => {
@@ -28,6 +31,7 @@ export default class Login extends Component {
                     console.log('Failed to save token: \n' + error)
                 }
             })
+            .then(() => navigate('Home'))
     }
 
     render() {
@@ -61,9 +65,9 @@ export default class Login extends Component {
                     value={this.state.password}
                 />
                 <Button
-					onPress={() => this.login(this.state)}
-                    title="Login"
-                />
+                    style={styles.buttonStyle}
+                    onPress={() => this.login(this.state, navigate)}
+                >Login</Button>
                 <Text onPress={() => navigate('Signup')} style={styles.links}>Don't have an account? Sign up</Text>
             </View>
         );
@@ -81,7 +85,8 @@ const styles = StyleSheet.create({
     input: {
         height: 50,
         textAlign: 'center',
-        padding: 10
+        padding: 10,
+        height: 50
     },
     heading: {
         fontSize: 24,
@@ -90,5 +95,13 @@ const styles = StyleSheet.create({
     links: {
         color: '#0080ff',
         marginTop: 10
+    },
+    buttonStyle: {
+        color: '#ffffff',
+        backgroundColor: '#428bca',
+        padding: 10,
+        paddingRight: 30,
+        paddingLeft: 30
+
     }
 });

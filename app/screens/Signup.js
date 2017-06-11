@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View,Image, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 export default class Signup extends Component {
     static navigationOptions = ({ navigation }) => ({
         title: 'Signup',
-        headerTitle: 'Signup'
+        headerTitle: 'Signup',
+        headerStyle: {backgroundColor: '#0080ff'},
+        headerTitleStyle: {color:'#ffffff'}
     });
     constructor(props) {
         super(props);
