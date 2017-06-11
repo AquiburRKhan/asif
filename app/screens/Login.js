@@ -19,19 +19,15 @@ export default class Login extends Component {
 		};
     }
 
-    login(_state, navigate) {
-        
+    async login(_state, navigate) {
         // Log in
-        let response = API.login(_state)
-            .then((response) => {
-                // Store the auth token
-                try {
-                    AsyncStorage.setItem('@AsIf:token', response.data.token);
-                } catch (error) {
-                    console.log('Failed to save token: \n' + error)
-                }
-            })
-            .then(() => navigate('Home'))
+        let response = await API.login(_state)
+        try {
+            await AsyncStorage.setItem('@AsIf:token', response.data.token);
+            await navigate('Home')
+        } catch (error) {
+            console.log('Failed to save token: \n' + error)
+        }
     }
 
     render() {
