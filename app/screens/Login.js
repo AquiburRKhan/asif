@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View,Image, TextInput, AsyncStorage } from 'react-native';
+import API from './../config/api'
 import Button from 'react-native-button';
-
 
 export default class Login extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -12,12 +12,27 @@ export default class Login extends Component {
     });
     constructor(props) {
         super(props);
-        this.state = { user: '' };
-        this.state = { company: '' };
-        this.state = { password: '' };
+        this.state = { 
+			identifier: 'test1@rehive.com',
+			company_id: 'test_company_1',
+			password: 'test1'
+		};
     }
 
-
+    login(_state, navigate) {
+        
+        // Log in
+        let response = API.login(_state)
+            .then((response) => {
+                // Store the auth token
+                try {
+                    AsyncStorage.setItem('@AsIf:token', response.data.token);
+                } catch (error) {
+                    console.log('Failed to save token: \n' + error)
+                }
+            })
+            .then(() => navigate('Home'))
+    }
 
     render() {
         const {navigate} = this.props.navigation;
@@ -28,27 +43,30 @@ export default class Login extends Component {
                     style={styles.input}
                     placeholder="Enter Email,Number,Unique ID"
                     placeholderTextColor="#a9a9a9"
-                    onChangeText={(user) => this.setState({user})}
-                    value={this.state.user}
+                    autoCapitalize='none'
+                    onChangeText={(identifier) => this.setState({identifier})}
+                    value={this.state.identifier}
                 />
                 <TextInput
                     style={styles.input}
-                    placeholder="Enter Company"
+                    placeholder="Enter Company ID"
                     placeholderTextColor="#a9a9a9"
-                    onChangeText={(company) => this.setState({company})}
-                    value={this.state.company}
+                    autoCapitalize='none'
+                    onChangeText={(company_id) => this.setState({company_id})}
+                    value={this.state.company_id}
                 />
                 <TextInput
                     secureTextEntry={true}
-                    style={{width: 250,textAlign: 'center',padding: 10,marginBottom: 10, height: 50}}
+                    style={styles.input}
                     placeholder="Enter Password"
                     placeholderTextColor="#a9a9a9"
+                    autoCapitalize='none'
                     onChangeText={(password) => this.setState({password})}
                     value={this.state.password}
                 />
                 <Button
                     style={styles.buttonStyle}
-                    onPress={() => navigate('Home')}
+                    onPress={() => this.login(this.state, navigate)}
                 >Login</Button>
                 <Text onPress={() => navigate('Signup')} style={styles.links}>Don't have an account? Sign up</Text>
             </View>
@@ -65,7 +83,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     input: {
-        width: 250,
+        height: 50,
         textAlign: 'center',
         padding: 10,
         height: 50
