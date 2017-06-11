@@ -5,8 +5,8 @@ import Button from 'react-native-button';
 
 export default class Login extends Component {
     static navigationOptions = ({ navigation }) => ({
-        title: 'Login',
-        headerTitle: 'Login',
+        title: 'AsIf',
+        headerTitle: 'AsIf',
         headerStyle: {backgroundColor: '#0080ff'},
         headerTitleStyle: {color:'#ffffff'}
     });
@@ -19,9 +19,9 @@ export default class Login extends Component {
 		};
     }
 
-    async login(_state, navigate) {
+    async login(state, navigate) {
         // Log in
-        let response = await API.login(_state)
+        let response = await API.login(state)
         try {
             await AsyncStorage.setItem('@AsIf:token', response.data.token);
             await navigate('Home')
@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
         height: 50,
         textAlign: 'center',
         padding: 10,
-        height: 50
     },
     heading: {
         fontSize: 24,

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Platform } from 'react-native';
 
 export default class Signup extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -50,12 +50,18 @@ export default class Signup extends Component {
 const styles = StyleSheet.create({
     view: {
         flex: 1,
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white'
     },
     input: {
-        width: 250,
+        ...Platform.select({
+            android: {
+                width: 250
+            }
+        }),
+        height: 50,
         textAlign: 'center',
         padding: 10
     },
