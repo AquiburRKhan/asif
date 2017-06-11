@@ -9,12 +9,12 @@ export default class Login extends Component {
     });
     constructor(props) {
         super(props);
-        this.state = { user: '' };
-        this.state = { company: '' };
-        this.state = { password: '' };
+        this.state = { 
+			user: '',
+			company: '',
+			password: ''
+		};
     }
-
-
 
     render() {
         const {navigate} = this.props.navigation;
@@ -37,13 +37,14 @@ export default class Login extends Component {
                 />
                 <TextInput
                     secureTextEntry={true}
-                    style={{width: 250,textAlign: 'center',padding: 10,marginBottom: 10}}
+                    style={styles.input}
                     placeholder="Enter Password"
                     placeholderTextColor="#a9a9a9"
                     onChangeText={(password) => this.setState({password})}
                     value={this.state.password}
                 />
                 <Button
+					onPress={() => console.log(this.state)}
                     title="Login"
                 />
                 <Text onPress={() => navigate('Signup')} style={styles.links}>Don't have an account? Sign up</Text>
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     input: {
-        width: 250,
+        height: 50,
         textAlign: 'center',
         padding: 10
     },
