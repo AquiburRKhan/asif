@@ -4,8 +4,9 @@ import { StyleSheet, Text, View,Image, TextInput,Button } from 'react-native';
 export default class Login extends Component {
     static navigationOptions = ({ navigation }) => ({
         title: 'Asif',
+        headerTitle: 'Asif',
         headerStyle: {backgroundColor: '#0080ff'},
-        headerTitleStyle: {color:'#000'}
+        headerTitleStyle: {color:'#ffffff'}
     });
     constructor(props) {
         super(props);
@@ -37,7 +38,7 @@ export default class Login extends Component {
                 />
                 <TextInput
                     secureTextEntry={true}
-                    style={{width: 250,textAlign: 'center',padding: 10,marginBottom: 10}}
+                    style={{width: 250,textAlign: 'center',padding: 10,marginBottom: 10, height: 50}}
                     placeholder="Enter Password"
                     placeholderTextColor="#a9a9a9"
                     onChangeText={(password) => this.setState({password})}
@@ -63,7 +64,8 @@ const styles = StyleSheet.create({
     input: {
         width: 250,
         textAlign: 'center',
-        padding: 10
+        padding: 10,
+        height: 50
     },
     heading: {
         fontSize: 24,
