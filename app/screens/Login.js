@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View,Image, TextInput,Button } from 'react-native';
+import { StyleSheet, Text, View,Image, TextInput,Button, AsyncStorage } from 'react-native';
 import API from './../config/api'
 
 export default class Login extends Component {
@@ -15,6 +15,19 @@ export default class Login extends Component {
 			company_id: 'test_company_1',
 			password: 'test1'
 		};
+    }
+
+    login(_state) {
+        // Log in
+        let response = API.login(_state)
+            .then((response) => {
+                // Store the auth token
+                try {
+                    AsyncStorage.setItem('@AsIf:token', response.data.token);
+                } catch (error) {
+                    console.log('Failed to save token: \n' + error)
+                }
+            })
     }
 
     render() {
@@ -48,7 +61,7 @@ export default class Login extends Component {
                     value={this.state.password}
                 />
                 <Button
-					onPress={() => API.login(this.state)}
+					onPress={() => this.login(this.state)}
                     title="Login"
                 />
                 <Text onPress={() => navigate('Signup')} style={styles.links}>Don't have an account? Sign up</Text>
